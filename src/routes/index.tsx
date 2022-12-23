@@ -4,22 +4,27 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import Swal from 'sweetalert2'
 import 'animate.css';
 
+// type 'Data' for our data array
 type Data = {
-  data: string[] | null
+  items: string[]
 }
 
 export default component$(() => {
-  const todoData = useStore<Data>({
-    data: [] //'hi', 'k', 'k', 'k', 'k', 'k', 'k', 'k', 'k', 'k', 'k', 'k']
+
+  // make a new store to the constant 'todo' and give it one array 'items'
+  const todo = useStore<Data>({
+    items: []
   });
 
+  // use 'useClientEffect$' to recieve todo list items from local storage and make sure they are not null
   useClientEffect$(() => {
     const todoItems = localStorage.getItem('todo')
     if(todoItems !== null){
-      todoData.data = JSON.parse(todoItems)
+      todo.items = JSON.parse(todoItems)
     }
   })
 
+  // function to notify the user that the item is added successfully
   const notify = $(() => {
     Swal.fire({
       title: 'Added Successfully',
@@ -30,14 +35,16 @@ export default component$(() => {
     })
   })
 
+  // function to add the new item to the to-do list
   const addItem = $((e: Event) => {
-    const AddedData: string = ((e.target as HTMLFormElement).addedData as HTMLInputElement).value;
-    todoData.data !== null ? todoData.data = [...todoData.data, AddedData] : null;
-    localStorage.setItem('todo', JSON.stringify(todoData.data));
-    ((e.target as HTMLFormElement).addedData as HTMLInputElement).value = "";
+    const addedItem: string = ((e.target as HTMLFormElement).addedItem as HTMLInputElement).value;
+    todo.items !== null ? todo.items = [...todo.items, addedItem] : null;
+    localStorage.setItem('todo', JSON.stringify(todo.items));
+    ((e.target as HTMLFormElement).addedItem as HTMLInputElement).value = "";
     notify()
   })
 
+  // function to remove a specific item from to-do list
   const removeItem = $((index: number) => {
     Swal.fire({
       title: 'Are you sure ?',
@@ -49,8 +56,8 @@ export default component$(() => {
       confirmButtonText: 'Yes, I finished it!'
     }).then((result) => {
       if(result.isConfirmed) {
-        todoData.data !== null ? todoData.data = todoData.data.filter((_, i) => i !== index) : null;
-        localStorage.setItem('todo', JSON.stringify(todoData.data));
+        todo.items !== null ? todo.items = todo.items.filter((_, i) => i !== index) : null;
+        localStorage.setItem('todo', JSON.stringify(todo.items));
         Swal.fire({
           title: 'Deleted!',
           text: 'Your to-do item has been deleted.',
@@ -62,6 +69,7 @@ export default component$(() => {
     })    
   })
 
+  // the website interface
   return (
     <div class="w-screen h-screen bg-slate-800 flex flex-col">
       <div class="w-full flex justify-center py-6 shadow-lg shadow-slate-800 z-10">
@@ -81,12 +89,13 @@ export default component$(() => {
       </div>
       <div class="w-full h-full flex flex-col items-center overflow-x-hidden">
         {
-          todoData.data?.map(
+          // take each item in the list and give it certain design
+          todo.items?.map(
             (item: String, index: number) => 
             <div contentEditable='true'
                   onFocusout$={(e) => {
-                    todoData.data![index] = (e.target.textContent as string);
-                    localStorage.setItem('todo', JSON.stringify(todoData.data));
+                    todo.items![index] = (e.target.textContent as string);
+                    localStorage.setItem('todo', JSON.stringify(todo.items));
                   }}
                   class="rounded w-11/12 md:w-1/2 h-fit p-2 mb-4 flex flex-row justify-between items-center bg-red-50 focus:bg-cyan-50 outline-none first:mt-2"
                   key={index}>
@@ -109,6 +118,7 @@ export default component$(() => {
   );
 });
 
+// simple SEO
 export const head: DocumentHead = {
   title: 'Qwik To-Do List',
   meta: [
