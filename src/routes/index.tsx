@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 import 'animate.css';
 
 type Data = {
-  data: String[]
+  data: string[] | null
 }
 
 export default component$(() => {
@@ -31,8 +31,8 @@ export default component$(() => {
   })
 
   const addItem = $((e: Event) => {
-    const AddedData: String = ((e.target as HTMLFormElement).addedData as HTMLInputElement).value;
-    todoData.data = [...todoData.data, AddedData];
+    const AddedData: string = ((e.target as HTMLFormElement).addedData as HTMLInputElement).value;
+    todoData.data !== null ? todoData.data = [...todoData.data, AddedData] : null;
     localStorage.setItem('todo', JSON.stringify(todoData.data));
     ((e.target as HTMLFormElement).addedData as HTMLInputElement).value = "";
     notify()
@@ -49,7 +49,7 @@ export default component$(() => {
       confirmButtonText: 'Yes, I finished it!'
     }).then((result) => {
       if(result.isConfirmed) {
-        todoData.data = todoData.data.filter((_, i) => i !== index)
+        todoData.data !== null ? todoData.data = todoData.data.filter((_, i) => i !== index) : null;
         localStorage.setItem('todo', JSON.stringify(todoData.data));
         Swal.fire({
           title: 'Deleted!',
@@ -81,11 +81,11 @@ export default component$(() => {
       </div>
       <div class="w-full h-full flex flex-col items-center overflow-x-hidden">
         {
-          todoData.data.map(
+          todoData.data?.map(
             (item: String, index: number) => 
             <div contentEditable='true'
                   onFocusout$={(e) => {
-                    todoData.data[index] = (e.target.textContent as String)
+                    todoData.data![index] = (e.target.textContent as string);
                     localStorage.setItem('todo', JSON.stringify(todoData.data));
                   }}
                   class="rounded w-11/12 md:w-1/2 h-fit p-2 mb-4 flex flex-row justify-between items-center bg-red-50 focus:bg-cyan-50 outline-none first:mt-2"
