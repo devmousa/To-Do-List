@@ -78,7 +78,7 @@ export default component$(() => {
           <input class="rounded w-64 md:w-96 p-2 bg-slate-200 text-slate-900 outline-none placeholder:text-slate-500"
                 id="TodoAdd"
                 type="text"
-                name="addedData"
+                name="addedItem"
                 placeholder="Enter something to do" />
 
           <button class="transition-all rounded p-2 bg-green-500 hover:bg-green-400
