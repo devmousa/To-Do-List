@@ -72,8 +72,8 @@ export default component$(() => {
   // the website interface
   return (
     <div>
-      <div class="w-screen h-screen bg-sky-100 flex flex-col">
-        <div class="w-full flex justify-center py-6">
+      <div class="w-screen flex flex-col">
+        <div class="w-full fixed flex justify-center z-10 bg-sky-100  py-6">
           <form preventdefault:submit
             onSubmit$={e => addItem(e)}>
             <input class="rounded w-64 md:w-96 p-2 text-sky-900 bg-white outline-none placeholder:text-sky-900 backdrop-blur"
@@ -88,7 +88,7 @@ export default component$(() => {
             </button>
           </form>
         </div>
-        <div class="w-full flex flex-col items-center overflow-x-hidden overflow-y-auto">
+        <div class="w-full mt-20 flex flex-col items-center overflow-x-hidden overflow-y-auto">
           {
             // take each item in the list and give it certain design
             todo.items?.map(

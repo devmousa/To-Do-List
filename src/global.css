@@ -2,21 +2,6 @@
   @tailwind components;
   @tailwind utilities;
 
-@media screen and (min-width: 768px) {
-    ::-webkit-scrollbar {
-    width: 8px;
-    border-radius: 16px;
-    background: rgb(95, 231, 231);
-  }
-  ::-webkit-scrollbar:hover {
-    width: 16px;
-    background: rgb(73, 227, 227);
-  }
-  ::-webkit-scrollbar-thumb {
-    border-radius: 16px;
-    background: rgb(4, 118, 118);
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsla(180, 30%, 30%, 1);
-  }
+body {
+  background-color: rgb(224 242 254);
 }
