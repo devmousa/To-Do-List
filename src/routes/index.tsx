@@ -76,11 +76,11 @@ export default component$(() => {
         <div class="w-full fixed flex justify-center z-10 bg-sky-100  py-6">
           <form preventdefault:submit
             onSubmit$={e => addItem(e)}>
-            <input class="rounded w-64 md:w-96 p-2 text-sky-900 bg-white outline-none placeholder:text-sky-900 backdrop-blur"
+            <input class="rounded w-64 md:w-96 p-2 text-sky-900 bg-white outline-none placeholder:text-sky-900 placeholder:text-opacity-40 backdrop-blur"
                   id="TodoAdd"
                   type="text"
                   name="addedItem"
-                  placeholder="Enter something to do" />
+                  placeholder="Enter something to do..." />
 
             <button class="transition-all rounded p-2 text-slate-100 hover:text-slate-800 bg-sky-500 hover:bg-sky-200
                             hover:shadow hover:shadow-slate-600 px-4 ml-4 backdrop-blur">
