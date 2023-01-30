@@ -72,11 +72,11 @@ export default component$(() => {
   // the website interface
   return (
     <div>
-      <div class="w-screen h-screen bg-sky-600 flex flex-col">
+      <div class="w-screen h-screen bg-sky-100 flex flex-col">
         <div class="w-full flex justify-center py-6">
           <form preventdefault:submit
             onSubmit$={e => addItem(e)}>
-            <input class="rounded w-64 md:w-96 p-2 text-slate-100 bg-slate-100 outline-none placeholder:text-slate-100 bg-opacity-40 backdrop-blur"
+            <input class="rounded w-64 md:w-96 p-2 text-sky-900 bg-white outline-none placeholder:text-sky-900 backdrop-blur"
                   id="TodoAdd"
                   type="text"
                   name="addedItem"
@@ -98,7 +98,7 @@ export default component$(() => {
                       todo.items![index] = (e.target.textContent as string);
                       localStorage.setItem('todo', JSON.stringify(todo.items));
                     }}
-                    class="rounded w-11/12 md:w-1/2 h-fit p-2 mb-4 flex flex-row justify-between items-center text-slate-100 bg-red-50 focus:bg-cyan-50 outline-none first:mt-2 bg-opacity-40 backdrop-blur focus:bg-opacity-40 focus:backdrop-blur"
+                    class="rounded w-11/12 md:w-1/2 h-fit p-2 mb-4 flex flex-row justify-between items-center text-teal-900 bg-white focus:bg-stone-50 outline-none first:mt-2 backdrop-blur focus:backdrop-blur"
                     key={index}>
                       <p>
                         {item as JSXChildren}
