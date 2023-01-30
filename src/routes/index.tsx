@@ -72,8 +72,8 @@ export default component$(() => {
   // the website interface
   return (
     <div>
-      <div class="w-screen flex flex-col">
-        <div class="w-full fixed flex justify-center z-10 bg-sky-100  py-6">
+      <div class="w-full flex flex-col">
+        <div class="w-full fixed flex justify-center z-10 bg-sky-100 py-6">
           <form preventdefault:submit
             onSubmit$={e => addItem(e)}>
             <input class="rounded w-64 md:w-96 p-2 text-sky-900 bg-white outline-none placeholder:text-sky-900 placeholder:text-opacity-40 backdrop-blur"
@@ -88,14 +88,14 @@ export default component$(() => {
             </button>
           </form>
         </div>
-        <div class="w-full mt-20 flex flex-col items-center overflow-x-hidden overflow-y-auto">
+        <div class="w-full mt-20 flex flex-col items-center">
           {
             // take each item in the list and give it certain design
             todo.items?.map(
               (item: String, index: number) => 
               <div contentEditable='true'
                     onFocusout$={(e) => {
-                      todo.items![index] = (e.target.textContent as string);
+                      todo.items![index] = e.target.textContent as string;
                       localStorage.setItem('todo', JSON.stringify(todo.items));
                     }}
                     class="rounded w-11/12 md:w-1/2 h-fit p-2 mb-4 flex flex-row justify-between items-center text-teal-900 bg-white focus:bg-stone-50 outline-none first:mt-2 backdrop-blur focus:backdrop-blur"
