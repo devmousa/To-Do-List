@@ -82,7 +82,7 @@ export default component$(() => {
                   name="addedItem"
                   placeholder="Enter something to do" />
 
-            <button class="transition-all rounded p-2 text-slate-100 hover:text-slate-800 bg-sky-400 hover:bg-sky-200
+            <button class="transition-all rounded p-2 text-slate-100 hover:text-slate-800 bg-sky-500 hover:bg-sky-200
                             hover:shadow hover:shadow-slate-600 px-4 ml-4 backdrop-blur">
               Add
             </button>
@@ -104,7 +104,7 @@ export default component$(() => {
                         {item as JSXChildren}
                       </p>
                       <svg xmlns="http://www.w3.org/2000/svg"
-                          class="rounded w-7 h-7 p-1 cursor-pointer bg-red-600 hover:bg-red-500 text-slate-200"
+                          class="rounded w-7 h-7 p-1 cursor-pointer text-red-500"
                           viewBox="0 0 512 512"
                           onClick$={() => removeItem(index)}>
                             <path d="M112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
