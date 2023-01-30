@@ -88,7 +88,7 @@ export default component$(() => {
             </button>
           </form>
         </div>
-        <div class="w-full flex flex-col items-center overflow-x-hidden">
+        <div class="w-full flex flex-col items-center overflow-x-hidden overflow-y-auto">
           {
             // take each item in the list and give it certain design
             todo.items?.map(
