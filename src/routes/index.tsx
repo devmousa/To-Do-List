@@ -4,8 +4,6 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import Swal from 'sweetalert2'
 import 'animate.css';
 
-import DragonScales from '~/svg/dragon-scales.svg'
-
 // type 'Data' for our data array
 type Data = {
   items: string[]
